@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+<title>Device Preview</title>
+<style>
+  :root {
+    --bg: #14161a;
+    --panel: #1e2126;
+    --border: #2c3038;
+    --text: #e8e9ec;
+    --muted: #8a8f98;
+    --accent: #5b8cff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+  }
+  #toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--panel);
+    border-bottom: 1px solid var(--border);
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+  }
+  #path {
+    flex: 1 1 160px;
+    min-width: 0;
+    padding: 8px 10px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 6px;
+    font-size: 14px;
+  }
+  button {
+    padding: 8px 12px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  button.secondary {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+  #tabs {
+    display: flex;
+    gap: 6px;
+    padding: 8px 10px;
+    overflow-x: auto;
+    background: var(--panel);
+    border-bottom: 1px solid var(--border);
+  }
+  .tab {
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--muted);
+    font-size: 13px;
+    white-space: nowrap;
+  }
+  .tab.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+  #stage {
+    padding: 14px 10px 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+  .device {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+  }
+  .device.visible { display: flex; }
+  .device-label {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 6px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .device-label .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent);
+  }
+  .frame-wrap {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  }
+  iframe {
+    border: none;
+    display: block;
+    transform-origin: top left;
+  }
+  #empty-hint {
+    color: var(--muted);
+    font-size: 13px;
+    padding: 20px 14px;
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+
+<div id="toolbar">
+  <input id="path" type="text" placeholder="index.html or http://localhost:3000" />
+  <button id="loadBtn">Load</button>
+  <button id="refreshBtn" class="secondary">↻ Refresh</button>
+</div>
+
+<div id="tabs">
+  <div class="tab active" data-target="all">All</div>
+  <div class="tab" data-target="mobile">Mobile</div>
+  <div class="tab" data-target="tablet-p">Tablet ↕</div>
+  <div class="tab" data-target="tablet-l">Tablet ↔</div>
+  <div class="tab" data-target="laptop">Laptop</div>
+  <div class="tab" data-target="desktop">Desktop</div>
+</div>
+
+<div id="stage"></div>
+
+<script>
+  const DEVICES = [
+    { id: "mobile",    label: "Mobile",         w: 375,  h: 700 },
+    { id: "tablet-p",  label: "Tablet Portrait",  w: 768,  h: 900 },
+    { id: "tablet-l",  label: "Tablet Landscape", w: 1024, h: 700 },
+    { id: "laptop",    label: "Laptop",           w: 1280, h: 800 },
+    { id: "desktop",   label: "Desktop",          w: 1440, h: 850 },
+  ];
+
+  const stage = document.getElementById("stage");
+  const pathInput = document.getElementById("path");
+  const STORAGE_KEY = "device-preview-path";
+
+  // remember last path used, so reopening this file doesn't reset it
+  pathInput.value = localStorage.getItem(STORAGE_KEY) || "index.html";
+
+  function buildStage() {
+    stage.innerHTML = "";
+
+    if (!pathInput.value.trim()) {
+      stage.innerHTML = `<div id="empty-hint">Type a file path (e.g. <b>index.html</b>) or a local server URL (e.g. <b>http://localhost:3000</b>) above, then tap Load.</div>`;
+      return;
+    }
+
+    DEVICES.forEach(dev => {
+      const wrap = document.createElement("div");
+      wrap.className = "device visible";
+      wrap.dataset.id = dev.id;
+
+      const availableWidth = Math.min(window.innerWidth - 20, 900); // cap so desktop isn't absurdly tall on tablets
+      const scale = Math.min(1, availableWidth / dev.w);
+
+      wrap.innerHTML = `
+        <div class="device-label">
+          <span class="dot"></span>
+          ${dev.label} — ${dev.w}×${dev.h}px (${Math.round(scale * 100)}% scale)
+        </div>
+        <div class="frame-wrap" style="width:${dev.w * scale}px; height:${dev.h * scale}px;">
+          <iframe
+            src="${resolveSrc(pathInput.value)}"
+            style="width:${dev.w}px; height:${dev.h}px; transform: scale(${scale});"
+            data-src="${resolveSrc(pathInput.value)}"
+          ></iframe>
+        </div>
+      `;
+      stage.appendChild(wrap);
+    });
+
+    applyTabFilter(currentTab);
+  }
+
+  function resolveSrc(path) {
+    // cache-bust so edits actually show up on refresh
+    const sep = path.includes("?") ? "&" : "?";
+    return path + sep + "t=" + Date.now();
+  }
+
+  function refreshAll() {
+    document.querySelectorAll("iframe").forEach(f => {
+      const base = pathInput.value;
+      f.src = resolveSrc(base);
+    });
+  }
+
+  document.getElementById("loadBtn").addEventListener("click", () => {
+    localStorage.setItem(STORAGE_KEY, pathInput.value);
+    buildStage();
+  });
+
+  document.getElementById("refreshBtn").addEventListener("click", refreshAll);
+
+  let currentTab = "all";
+  function applyTabFilter(target) {
+    currentTab = target;
+    document.querySelectorAll(".tab").forEach(t => {
+      t.classList.toggle("active", t.dataset.target === target);
+    });
+    document.querySelectorAll(".device").forEach(d => {
+      d.classList.toggle("visible", target === "all" || d.dataset.id === target);
+    });
+  }
+
+  document.querySelectorAll(".tab").forEach(tab => {
+    tab.addEventListener("click", () => applyTabFilter(tab.dataset.target));
+  });
+
+  window.addEventListener("resize", buildStage);
+
+  buildStage();
+</script>
+
+</body>
+</html>
