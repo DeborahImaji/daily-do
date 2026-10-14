@@ -22,11 +22,19 @@
 /*******************************************/
 
 :root {
+  --color-dark-green: #3C4E36;
   --color-light-green: #BAD187;
+  --color-white: #FFF;
 }
 
 body {
   background: var(--color-light-green);
+  font-family: 'Fredoka', sans-serif;
+}
+
+body, h1, h2, h3, p {
+  margin: 0;
+  padding: 0;
 }
 
 
@@ -34,6 +42,17 @@ body {
 /* LAYOUT
 /*******************************************/
 
+.header {
+  background: var(--color-white);
+  border-radius: 0 0 3rem 3rem;
+  padding: 2.5rem;
+  text-align: center;
+}
+
+.heading1 {
+  color: var(--color-dark-green);
+  font-size: 3rem;
+}
 
 /******************************************
 /* ADDITIONAL STYLES
