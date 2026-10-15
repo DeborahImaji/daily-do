@@ -21,6 +21,14 @@
 /* BASE STYLES
 /*******************************************/
 
+@font-face {
+  font-family: 'Fredoka';
+  src: url('../assets/fonts/Fredoka-Variable.woff2');
+  font-weight: variable;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --color-dark-green: #3C4E36;
   --color-light-green: #BAD187;
@@ -42,16 +50,27 @@ body, h1, h2, h3, p {
 /* LAYOUT
 /*******************************************/
 
+/* HEADER */
+
 .header {
   background: var(--color-white);
-  border-radius: 0 0 3rem 3rem;
-  padding: 2.5rem;
+  border-radius: 0 0 2.5rem 2.5rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  padding: 2rem 0;
   text-align: center;
 }
 
 .heading1 {
   color: var(--color-dark-green);
-  font-size: 3rem;
+  font-size: 5.5rem;
+  font-weight: 600;
+  letter-spacing: 1rem;
+}
+
+@media screen and (max-width: 800px) {
+  .heading1 {
+    font-size: 4.5rem;
+  }
 }
 
 /******************************************
