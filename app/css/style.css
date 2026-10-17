@@ -31,13 +31,19 @@
 
 :root {
   --color-dark-green: #3C4E36;
+  --color-dark-grey: #494949;
+  --color-light-blue: #C7EAFE;
   --color-light-green: #BAD187;
+  --color-light-lemon: #E1F3C9;
   --color-white: #FFF;
 }
 
 body {
   background: var(--color-light-green);
+  color: var(--color-dark-grey);
   font-family: 'Fredoka', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 400;
 }
 
 body, h1, h2, h3, p {
@@ -71,6 +77,35 @@ body, h1, h2, h3, p {
   .heading1 {
     font-size: 4.5rem;
   }
+}
+
+@media screen and (max-width: 500px) {
+  .heading1 {
+    font-size: 3.5rem;
+    letter-spacing: 0.5rem;
+  }
+}
+
+/* PROGRESS BAR */
+
+.progress-section {
+  background: var(--color-white);
+  box-shadow: 0.75rem 0.75rem 0rem -0.0625rem var(--color-light-blue);
+border-radius: 0px;
+  border-radius: 2rem;
+  margin: 4rem 5rem 2rem 5rem;
+  padding: 1.5 2rem;
+}
+
+.progress-section .heading3 {
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.progress-bar-body {
+  background: #F5F4F2;
+  border-radius: 3rem;
+  height: 2rem;
 }
 
 /******************************************
