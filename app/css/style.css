@@ -21,9 +21,20 @@
 /* BASE STYLES
 /*******************************************/
 
+@font-face {
+  font-family: 'Fredoka';
+  src: url('../assets/fonts/Fredoka-Variable.woff2');
+  font-weight: variable;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --bg-gradient: linear-gradient(to bottom, #96BFDF, #CCEBFF);
+  --border-light-blue: #A0CCEF;
+  --color-coffee-brown: #8E7B6D;
   --color-off-white: #FAF3E3;
+  --dark-blue-gradient: linear-gradient();
 }
 
 body {
@@ -32,6 +43,8 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.25rem;
   min-height: 100vh;
 }
 
@@ -45,6 +58,39 @@ body, h1, h2, h3 {
 /*******************************************/
 
 /* HEADER */
+.header {
+  background: var(--color-off-white);
+  border: 0.2rem solid var(--border-light-blue);
+  border-radius: 4rem;
+  margin: 0 1rem;
+  padding: 0.75rem;
+  text-align: center;
+}
+
+.heading1 {
+  color: var(--color-coffee-brown);
+  font-size: 4rem;
+  font-weight: 600;
+  letter-spacing: 0.25rem;
+}
+
+@media screen and (max-width: 800px) {
+  .heading1 {
+    font-size: 2.5rem;
+  }
+}
+@media screen and (max-width: 500px) {
+  .heading1 {
+    font-size: 2rem;
+  }
+}
+
+
+/* PROGRESS */
+.progress-section {
+  background: var(--dark-blue-gradient);
+  margin: 2rem 1rem;
+}
 
 /******************************************
 /* ADDITIONAL STYLES
