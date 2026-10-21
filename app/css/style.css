@@ -34,15 +34,17 @@
   --border-light-blue: #A0CCEF;
   --color-coffee-brown: #8E7B6D;
   --color-off-white: #FAF3E3;
-  --dark-blue-gradient: linear-gradient();
+  --color-white: #FFF;
+  --dark-blue-gradient: linear-gradient(to bottom, #6FABE9, #4377B1);
+  --golden-gradient: linear-gradient(to right, #DFCF84, #DCB34A);
 }
 
 body {
   background: var(--bg-gradient);
-  background-image: url('../assets/images/home-bg.jpg');
+  /*background-image: url('../assets/images/home-bg.jpg');
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover;*/
   font-family: 'Fredoka', sans-serif;
   font-size: 1.25rem;
   min-height: 100vh;
@@ -89,7 +91,31 @@ body, h1, h2, h3 {
 /* PROGRESS */
 .progress-section {
   background: var(--dark-blue-gradient);
-  margin: 2rem 1rem;
+  margin: 2rem 2rem;
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.progress-section .heading3 {
+  color: var(--color-white);
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.progress-bar-body {
+  background: var(--color-white);
+  border-radius: 0.5rem;
+  height: 1.35rem;
+  margin: 1rem auto 0 auto;
+  padding: 0.2rem;
+  width: 95%;
+}
+
+.progress-bar {
+  background: var(--golden-gradient);
+  border-radius: 0.5rem;
+  height: 100%;
+  width: 70%;
 }
 
 /******************************************
