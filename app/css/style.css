@@ -31,6 +31,7 @@
 
 :root {
   --button-blue-gradient: linear-gradient(to bottom right, #69A4FE, #8DD0FA);
+  --tab-gradient: linear-gradient(to bottom, #F5F9FC, #F1FAFF);
   --white: #FFF;
 }
 
@@ -82,31 +83,64 @@ body, h1, h2, h3 {
 
 /* PROGRESS BAR */
 .progress-section {
-  margin: 3rem 0 0 0;
-  text-align: center;
+  margin: 1rem 10rem 0 10rem;
+  text-align: right;
 }
 
 .progress-section .heading3 {
-  font-size: 2.25rem;
+  font-size: 1.5rem;
   font-weight: 500;
+  margin: 0 2rem 0 0;
 }
 
 .progress-bar-body {
   background: var(--white);
-  border-radius: 2rem;
+  border-radius: 4rem;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
-  height: 3rem;
-  margin: 1rem auto 0 auto;
+  height: 5rem;
+  margin: 0.5rem auto 0 auto;
   overflow: hidden;
   padding: 0.25rem;
-  width: 80%;
+  width: 100%;
 }
 
 .progress-bar {
   background: var(--button-blue-gradient);
-  border-radius: 2rem;
+  border-radius: 4rem;
   height: 100%;
   width: 75%;
+}
+
+@media screen and (max-width: 800px) {
+  .progress-section {
+    margin: 1rem 5rem 0 5rem;
+  }
+  .progress-section .heading3 {
+    font-size: 1.25rem;
+    margin: 0 1rem 0 0;
+  }
+  .progress-bar-body {
+    height: 4rem;
+  }
+}
+@media screen and (max-width: 500px) {
+  .progress-section {
+    margin: 2rem 2rem 0 2rem;
+  }
+  .progress-section .heading3 {
+    font-size: 1rem;
+    margin: 0 0.5rem 0 0;
+  }
+  .progress-bar-body {
+    height: 3rem;
+    padding: 0.15rem;
+  }
+}
+
+/* ADD TASKS */
+.add-section {
+  background: var(--tab-gradient);
+  margin: 2rem 10rem 0 10rem;
 }
 
 /******************************************
