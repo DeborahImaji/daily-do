@@ -30,6 +30,8 @@
 }
 
 :root {
+  --button-blue-gradient: linear-gradient(to bottom right, #69A4FE, #8DD0FA);
+  --white: #FFF;
 }
 
 body {
@@ -58,7 +60,7 @@ body, h1, h2, h3 {
 }
 
 .heading1 {
-  font-size: 4rem;
+  font-size: 3.5rem;
   font-weight: 600;
   letter-spacing: 0.5rem;
 }
@@ -70,6 +72,41 @@ body, h1, h2, h3 {
   .heading1 {
     font-size: 3rem;
   }
+}
+@media screen and (max-width: 500px) {
+  .heading1 {
+    font-size: 2.5rem;
+    letter-spacing: 0.25rem;
+  }
+}
+
+/* PROGRESS BAR */
+.progress-section {
+  margin: 3rem 0 0 0;
+  text-align: center;
+}
+
+.progress-section .heading3 {
+  font-size: 2.25rem;
+  font-weight: 500;
+}
+
+.progress-bar-body {
+  background: var(--white);
+  border-radius: 2rem;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+  height: 3rem;
+  margin: 1rem auto 0 auto;
+  overflow: hidden;
+  padding: 0.25rem;
+  width: 80%;
+}
+
+.progress-bar {
+  background: var(--button-blue-gradient);
+  border-radius: 2rem;
+  height: 100%;
+  width: 75%;
 }
 
 /******************************************
