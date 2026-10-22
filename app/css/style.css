@@ -30,27 +30,20 @@
 }
 
 :root {
-  --bg-gradient: linear-gradient(to bottom, #96BFDF, #CCEBFF);
-  --border-light-blue: #A0CCEF;
-  --color-coffee-brown: #8E7B6D;
-  --color-off-white: #FAF3E3;
-  --color-white: #FFF;
-  --dark-blue-gradient: linear-gradient(to bottom, #6FABE9, #4377B1);
-  --golden-gradient: linear-gradient(to right, #DFCF84, #DCB34A);
 }
 
 body {
-  background: var(--bg-gradient);
-  /*background-image: url('../assets/images/home-bg.jpg');
+  background-image: url('../assets/images/background.png');
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;*/
+  background-size: cover;
   font-family: 'Fredoka', sans-serif;
-  font-size: 1.25rem;
+  font-weight: 400;
   min-height: 100vh;
 }
 
 body, h1, h2, h3 {
+  font-weight: 400;
   margin: 0;
   padding: 0;
 }
@@ -59,63 +52,24 @@ body, h1, h2, h3 {
 /* LAYOUT
 /*******************************************/
 
-/* HEADER */
 .header {
-  background: var(--color-off-white);
-  border: 0.2rem solid var(--border-light-blue);
-  border-radius: 4rem;
-  margin: 0 1rem;
-  padding: 0.75rem;
+  padding: 3rem 0 0 0;
   text-align: center;
 }
 
 .heading1 {
-  color: var(--color-coffee-brown);
   font-size: 4rem;
   font-weight: 600;
-  letter-spacing: 0.25rem;
+  letter-spacing: 0.5rem;
 }
 
 @media screen and (max-width: 800px) {
-  .heading1 {
-    font-size: 2.5rem;
+  .header {
+    padding: 2.5rem 0 0 0;
   }
-}
-@media screen and (max-width: 500px) {
   .heading1 {
-    font-size: 2rem;
+    font-size: 3rem;
   }
-}
-
-
-/* PROGRESS */
-.progress-section {
-  background: var(--dark-blue-gradient);
-  margin: 2rem 2rem;
-  padding: 2rem 0;
-  text-align: center;
-}
-
-.progress-section .heading3 {
-  color: var(--color-white);
-  font-size: 2rem;
-  font-weight: 400;
-}
-
-.progress-bar-body {
-  background: var(--color-white);
-  border-radius: 0.5rem;
-  height: 1.35rem;
-  margin: 1rem auto 0 auto;
-  padding: 0.2rem;
-  width: 95%;
-}
-
-.progress-bar {
-  background: var(--golden-gradient);
-  border-radius: 0.5rem;
-  height: 100%;
-  width: 70%;
 }
 
 /******************************************
