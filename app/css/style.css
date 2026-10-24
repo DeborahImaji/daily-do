@@ -30,7 +30,10 @@
 }
 
 :root {
+  --black: #000;
   --button-blue-gradient: linear-gradient(to bottom right, #69A4FE, #8DD0FA);
+  --crystal-blue: #DAF2FE;
+  --dark-blue: #475270;
   --tab-gradient: linear-gradient(to bottom, #F5F9FC, #F1FAFF);
   --white: #FFF;
 }
@@ -40,6 +43,7 @@ body {
   background-position: top center;
   background-repeat: no-repeat;
   background-size: cover;
+  color: var(--dark-blue);
   font-family: 'Fredoka', sans-serif;
   font-weight: 400;
   min-height: 100vh;
@@ -61,6 +65,7 @@ body, h1, h2, h3 {
 }
 
 .heading1 {
+  color: var(--black);
   font-size: 3.5rem;
   font-weight: 600;
   letter-spacing: 0.5rem;
@@ -113,26 +118,26 @@ body, h1, h2, h3 {
 
 @media screen and (max-width: 800px) {
   .progress-section {
-    margin: 1rem 5rem 0 5rem;
+    margin: 1rem 5.5rem 0 5.5rem;
   }
   .progress-section .heading3 {
     font-size: 1.25rem;
     margin: 0 1rem 0 0;
   }
   .progress-bar-body {
-    height: 4rem;
+    height: 3rem;
   }
 }
 @media screen and (max-width: 500px) {
   .progress-section {
-    margin: 2rem 2rem 0 2rem;
+    margin: 2rem 2.5rem 0 2.5rem;
   }
   .progress-section .heading3 {
     font-size: 1rem;
     margin: 0 0.5rem 0 0;
   }
   .progress-bar-body {
-    height: 3rem;
+    height: 2rem;
     padding: 0.15rem;
   }
 }
@@ -146,27 +151,98 @@ body, h1, h2, h3 {
   padding: 3rem 3rem;
 }
 
-.add-inputs {
+.add-task-form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.add-task-inputs {
   align-items: center;
   display: flex;
   gap: 2rem;
-  margin: 0 0 1rem 0;
+  margin: 0 0 1.5rem 0;
+  width: 100%;
 }
 
-.add-inputs input {
+.add-task-inputs input {
   background: var(--white);
   border: none;
   border-radius: 3rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  color: var(--dark-blue);
   font-size: 1.15rem;
   padding: 1.5rem 2rem;
 }
 
-.add-inputs .add-task-name {
+.add-task-inputs .add-task-name {
   width: calc(70% - 1rem);
 }
 
-.add-inputs .add-task-date {
+.add-task-inputs .add-task-date {
   width: calc(30% - 1rem);
+}
+
+.add-task-submit {
+  background: var(--button-blue-gradient);
+  border: none;
+  border-radius: 2rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  color: var(--white);
+  font-size: 1.15rem;
+  font-weight: 500;
+  margin: 0 auto;
+  padding: 1.25rem 3.5rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.add-task-submit:hover {
+  transform: scale(1.1);
+}
+
+@media screen and (max-width: 800px) {
+  .add-section {
+    margin: 3rem 4rem 0 4rem;
+    padding: 2rem 2rem;
+  }
+  .add-task-inputs {
+    gap: 1rem;
+  }
+  .add-task-inputs input {
+    padding: 1.25rem 1.5rem;
+  }
+  .add-task-inputs .add-task-name {
+    width: calc(70% - 0.5rem);
+  }
+  .add-task-inputs .add-task-date {
+    width: calc(30% - 0.5rem);
+  }
+  .add-task-submit {
+    padding: 1rem 3rem;
+  }
+}
+@media screen and (max-width: 500px) {
+  .add-section {
+    border-radius: 2rem;
+    margin: 2rem 1.75rem 0 1.75rem;
+    padding: 1.5rem 1.25rem;
+  }
+  .add-task-inputs {
+    margin: 0 0 1rem 0;
+  }
+  .add-task-inputs input {
+    font-size: 0.9rem;
+    padding: 1.15rem 1rem;
+  }
+  .add-task-submit {
+    font-size: 1rem;
+    padding: 0.85rem 2.75rem;
+  }
+}
+
+/* TASK LIST SECTION */
+.task-list-section {
+  background: var(--crystal-blue);
 }
 
 /******************************************
