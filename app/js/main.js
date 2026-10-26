@@ -8,6 +8,8 @@ const taskListContainer = document.getElementById('taskListContainer');
 const progressBarFill = document.getElementById('progressBarFill');
 const progressPercent = document.getElementById('progressPercent');
 
+let allTasks = [];
+
 // WHEN USER ADDS A TASK
 
 addTaskForm.addEventListener('submit', addNewTask);
@@ -21,4 +23,13 @@ function addNewTask(event) {
   if (newTaskName.trim() === "" || newTaskDate.trim() === "") {
     return;
   }
+
+  const newTask = {
+    id: Date.now(),
+    name: newTaskName,
+    dueDate: newTaskDate,
+    completed: false
+  };
+
+  allTasks.push(newTask);
 }
