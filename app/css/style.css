@@ -245,8 +245,31 @@ body, h1, h2, h3 {
   background: var(--crystal-blue);
   border-radius: 3rem;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
-  margin: 4rem 7.5rem 3rem 7.5rem;
+  margin: 4rem 7.5rem 5rem 7.5rem;
   padding: 3rem;
+}
+
+.task-list-section .heading2 {
+  font-size: 2.25rem;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 800px) {
+  .task-list-section {
+    margin: 3.5rem 4rem 4rem 4rem;
+    padding: 2rem;
+  }
+  .task-list-section .heading2 {
+    font-size: 2rem;
+  }
+}
+@media screen and (max-width: 500px) {
+  .task-list-section {
+    margin: 3rem 1.75rem;
+  }
+  .task-list-section .heading2 {
+    font-size: 1.5rem;
+  }
 }
 
 /******************************************
