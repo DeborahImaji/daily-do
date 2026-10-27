@@ -57,6 +57,8 @@ function renderTasks() {
       <span class="task-date">${newTask.dueDate}</span>
     </div>
     `;
+
+    taskListContainer.appendChild(taskCard);
     
   });
 }
