@@ -40,6 +40,23 @@ function addNewTask(event) {
   renderTasks();
 }
 
+// FORMAT TASK DUE DATES
+
+function formatDate(dateString) {
+  if (!dateString) {
+    return;
+  }
+
+  const taskDate = new Date(dateString + 'T00:00:00');
+  const dateOptions = {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric'
+  };
+
+  return taskDate.toLocaleDateString('en-US', dateOptions);
+}
+
 // FILLING THE ALL TASKS LIST
 
 function renderTasks() {
@@ -55,7 +72,7 @@ function renderTasks() {
       <span class="task-name">${newTask.name}</span>
     </div>
     <div class="task-right">
-      <span class="task-date">${newTask.dueDate}</span>
+      <span class="task-date">${formatDate(newTask.dueDate)}</span>
     </div>
     `;
 
