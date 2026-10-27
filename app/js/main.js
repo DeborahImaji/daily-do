@@ -14,6 +14,10 @@ let allTasks = JSON.parse(localStorage.getItem('allTasks')) || [];
 
 addTaskForm.addEventListener('submit', addNewTask);
 
+// WHEN USER COMPLETES A TASK
+
+taskListContainer.addEventListener('click', function(e) {});
+
 function addNewTask(event) {
   event.preventDefault();
 
@@ -62,9 +66,17 @@ function formatDate(dateString) {
 function renderTasks() {
   taskListContainer.innerHTML = '';
 
+  allTasks.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
+
   allTasks.forEach(function(newTask) {
     const taskCard = document.createElement('div');
     taskCard.classList.add('task-card');
+
+    if (newTask.completed) {
+      taskCard.classList.add('completed');
+    }
+
+    taskCard.setAttribute('data-id', newTask.id);
 
     taskCard.innerHTML = `
     <div class="task-left">
