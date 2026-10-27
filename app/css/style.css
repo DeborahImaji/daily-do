@@ -254,6 +254,46 @@ body, h1, h2, h3 {
   font-weight: 500;
 }
 
+.task-list-container {
+  display: flex;
+  flex-direction: column;
+  margin: 1.5rem 0 0 0;
+}
+
+.task-card {
+  align-items: center;
+  background: var(--white);
+  border-radius: 1rem;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 0.5rem 0;
+  padding: 1rem;
+}
+
+.task-left {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+}
+
+.task-circle {
+  background: var(--white);
+  border: 0.15rem solid var(--dark-blue);
+  border-radius: 50%;
+  height: 1.15rem;
+  transition: all 0.3s ease-in-out;
+  width: 1.15rem;
+}
+
+.task-circle:hover {
+  background: var(--button-blue-gradient);
+  border: none;
+}
+
+.task-name {
+  font-size: 1.75rem;
+}
+
 @media screen and (max-width: 800px) {
   .task-list-section {
     margin: 3.5rem 4rem 4rem 4rem;

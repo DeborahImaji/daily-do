@@ -8,7 +8,7 @@ const taskListContainer = document.getElementById('taskListContainer');
 const progressBarFill = document.getElementById('progressBarFill');
 const progressPercent = document.getElementById('progressPercent');
 
-let allTasks = [];
+let allTasks = JSON.parse(localStorage.getItem('allTasks')) || [];
 
 // WHEN USER ADDS A TASK
 
@@ -32,6 +32,7 @@ function addNewTask(event) {
   };
 
   allTasks.push(newTask);
+  localStorage.setItem('allTasks', JSON.stringify(allTasks));
 
   addTaskInput.value = '';
   addDateInput.value = '';
@@ -51,7 +52,7 @@ function renderTasks() {
     taskCard.innerHTML = `
     <div class="task-left">
       <div class="task-circle"></div>
-      <p class="task-name">${newTask.name}</p>
+      <span class="task-name">${newTask.name}</span>
     </div>
     <div class="task-right">
       <span class="task-date">${newTask.dueDate}</span>
@@ -62,3 +63,5 @@ function renderTasks() {
     
   });
 }
+
+renderTasks();
