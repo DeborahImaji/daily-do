@@ -20,7 +20,7 @@ function addNewTask(event) {
   const newTaskName = addTaskInput.value;
   const newTaskDate = addDateInput.value;
 
-  if (newTaskName.trim() === "" || newTaskDate.trim() === "") {
+  if (newTaskName.trim() === '' || newTaskDate.trim() === '') {
     return;
   }
 
@@ -32,4 +32,31 @@ function addNewTask(event) {
   };
 
   allTasks.push(newTask);
+
+  addTaskInput.value = '';
+  addDateInput.value = '';
+
+  renderTasks();
+}
+
+// FILLING THE ALL TASKS LIST
+
+function renderTasks() {
+  taskListContainer.innerHTML = '';
+
+  allTasks.forEach(function(newTask) {
+    const taskCard = document.createElement('div');
+    taskCard.classList.add('task-card');
+
+    taskCard.innerHTML = `
+    <div class="task-left">
+      <div class="task-circle"></div>
+      <p class="task-name">${newTask.name}</p>
+    </div>
+    <div class="task-right">
+      <span class="task-date">${newTask.dueDate}</span>
+    </div>
+    `;
+    
+  });
 }
