@@ -34,6 +34,7 @@
   --button-blue-gradient: linear-gradient(to bottom right, #69A4FE, #8DD0FA);
   --crystal-blue: #DAF2FE;
   --dark-blue: #475270;
+  --red-gradient: linear-gradient(to bottom, #A01D23, #CE211B, #E77328, #CE211B, #A01D23);
   --tab-gradient: linear-gradient(to bottom, #F5F9FC, #F1FAFF);
   --white: #FFF;
 }
@@ -306,6 +307,17 @@ body, h1, h2, h3 {
 .task-card.completed .task-name, .task-card.completed .task-date {
   color: #888;
   text-decoration: line-through;
+}
+
+.clear-completed-btn {
+  background: var(--red-gradient);
+  border: none;
+  border-radius: 1.25rem;
+  color: var(--white);
+  display: block;
+  font-size: 1.3rem;
+  margin: 0 auto;
+  padding: 1.5rem 2rem;
 }
 
 @media screen and (max-width: 800px) {

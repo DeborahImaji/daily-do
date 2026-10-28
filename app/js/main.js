@@ -110,6 +110,8 @@ function renderTasks() {
     taskListContainer.appendChild(taskCard);
     
   });
+
+  updateProgressBar();
 }
 
 renderTasks();
@@ -126,6 +128,9 @@ function updateProgressBar() {
   const progressBarText = document.querySelector('.progress-percent');
 
   if (progressBarFill) {
-    progressBarFill.style.width = `${percentage}`;
+    progressBarFill.style.width = `${percentage}%`;
+  }
+  if (progressBarText) {
+    progressBarText.textContent = `Your progress: ${percentage}%`;
   }
 }
