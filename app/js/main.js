@@ -16,7 +16,26 @@ addTaskForm.addEventListener('submit', addNewTask);
 
 // WHEN USER COMPLETES A TASK
 
-taskListContainer.addEventListener('click', function(e) {});
+taskListContainer.addEventListener('click', function(e) {
+  if (!e.target.classList.contains('task-circle')) {
+    return;
+  }
+  const card = e.target.closest('.task-card');
+
+  if (!card) {
+    return;
+  }
+
+  const taskId = Number(card.getAttribute('data-id'));
+  const foundTask = allTasks.find(newTask => newTask.id === taskId);
+
+  if (foundTask) {
+    foundTask.completed = !foundTask.completed;
+
+    localStorage.setItem('allTasks', JSON.stringify(allTasks));
+    renderTasks();
+  }
+});
 
 function addNewTask(event) {
   event.preventDefault();
