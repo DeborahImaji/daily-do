@@ -96,7 +96,7 @@ body, h1, h2, h3 {
   text-align: right;
 }
 
-.progress-section .heading3 {
+.progress-percent {
   font-size: 1.5rem;
   font-weight: 500;
   margin: 0 2rem 0 0;
@@ -117,14 +117,13 @@ body, h1, h2, h3 {
   background: var(--button-blue-gradient);
   border-radius: 4rem;
   height: 100%;
-  width: 75%;
 }
 
 @media screen and (max-width: 800px) {
   .progress-section {
     margin: 1rem 5.5rem 0 5.5rem;
   }
-  .progress-section .heading3 {
+  .progress-percent {
     font-size: 1.25rem;
     margin: 0 1rem 0 0;
   }
@@ -136,7 +135,7 @@ body, h1, h2, h3 {
   .progress-section {
     margin: 2rem 2.5rem 0 2.5rem;
   }
-  .progress-section .heading3 {
+  .progress-percent {
     font-size: 1rem;
     margin: 0 0.5rem 0 0;
   }
@@ -273,6 +272,11 @@ body, h1, h2, h3 {
   justify-content: space-between;
   margin: 0 0 0.75rem 0;
   padding: 1rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.task-card.completed {
+  opacity: 0.6;
 }
 
 .task-left {
@@ -290,13 +294,18 @@ body, h1, h2, h3 {
   width: 1.15rem;
 }
 
-.task-circle:hover {
+.task-circle:hover, .task-card.completed .task-circle {
   background: var(--button-blue-gradient);
   border: none;
 }
 
 .task-name {
   font-size: 1.5rem;
+}
+
+.task-card.completed .task-name, .task-card.completed .task-date {
+  color: #888;
+  text-decoration: line-through;
 }
 
 @media screen and (max-width: 800px) {

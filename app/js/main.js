@@ -113,3 +113,19 @@ function renderTasks() {
 }
 
 renderTasks();
+
+// UPDATING THE PROGRESS BAR
+
+function updateProgressBar() {
+  const totalTasks = allTasks.length;
+  const completedTasks = allTasks.filter(newTask => newTask.completed).length;
+
+  const percentage = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
+
+  const progressBarFill = document.querySelector('.progress-bar');
+  const progressBarText = document.querySelector('.progress-percent');
+
+  if (progressBarFill) {
+    progressBarFill.style.width = `${percentage}`;
+  }
+}
