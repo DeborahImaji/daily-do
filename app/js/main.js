@@ -7,6 +7,7 @@ const addDateInput = document.getElementById('addDateInput');
 const taskListContainer = document.getElementById('taskListContainer');
 const progressBarFill = document.getElementById('progressBarFill');
 const progressPercent = document.getElementById('progressPercent');
+let currentFilter = 'all';
 
 let allTasks = JSON.parse(localStorage.getItem('allTasks')) || [];
 
@@ -85,9 +86,19 @@ function formatDate(dateString) {
 function renderTasks() {
   taskListContainer.innerHTML = '';
 
+  // SORT TASKS BY DUE DATE
   allTasks.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
 
-  allTasks.forEach(function(newTask) {
+  // FILTER TASKS BY TABS
+  let filteredTasks = allTasks;
+
+  if (currentFilter === 'active') {
+    filteredTasks = allTasks.filter(newTask => !newTask.completed);
+  } else if (currentFilter === 'completed') {
+    filteredTasks = allTasks.filter(newTask => newTask.completed);
+  }
+
+  filteredTasks.forEach(function(newTask) {
     const taskCard = document.createElement('div');
     taskCard.classList.add('task-card');
 
@@ -144,4 +155,14 @@ clearCompletedBtn.addEventListener('click', function() {
 
   localStorage.setItem('allTasks', JSON.stringify(allTasks));
   renderTasks();
+});
+
+// FILTER BUTTONS FOR TASKS
+
+const filterButtons = document.querySelectorAll('.filter-btn');
+
+filterButtons.forEach(button => {
+  button.addEventListener('click', function(e) {
+    filterButtons.forEach(btn => btn.classList.remove('active'));
+  });
 });

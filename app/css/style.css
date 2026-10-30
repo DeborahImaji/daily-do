@@ -259,12 +259,23 @@ body, h1, h2, h3 {
 }
 
 .filter-tabs {
-  margin: 2rem 0 0 0;
+  margin: 2rem 0 2rem 0;
 }
 
 .filter-tabs button {
+  background: var(--tab-gradient);
   border: none;
   border-radius: 3rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  color: var(--dark-blue);
+  margin: 0 1rem 0 0;
+  padding: 0.65rem 1.75rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.filter-tabs button:hover, .filter-tabs button.active {
+  background: var(--button-blue-gradient);
+  color: var(--white);
 }
 
 .task-list-container {
@@ -352,6 +363,11 @@ body, h1, h2, h3 {
   }
   .task-list-section .heading2 {
     font-size: 1.5rem;
+  }
+  .filter-tabs button {
+    font-size: 0.9rem;
+    margin: 0 0.5rem 0 0;
+    padding: 0.5rem 1.25rem;
   }
   .task-card {
     padding: 1rem 0.75rem;
