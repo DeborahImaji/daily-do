@@ -134,3 +134,14 @@ function updateProgressBar() {
     progressBarText.textContent = `Your progress: ${percentage}%`;
   }
 }
+
+// CLEAR COMPLETED TASKS
+
+const clearCompletedBtn = document.getElementById('clearCompletedBtn');
+
+clearCompletedBtn.addEventListener('click', function() {
+  allTasks = allTasks.filter(newTask => !newTask.completed);
+
+  localStorage.setItem('allTasks', JSON.stringify(allTasks));
+  renderTasks();
+});
