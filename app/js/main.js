@@ -164,5 +164,11 @@ const filterButtons = document.querySelectorAll('.filter-btn');
 filterButtons.forEach(button => {
   button.addEventListener('click', function(e) {
     filterButtons.forEach(btn => btn.classList.remove('active'));
+
+    e.target.classList.add('active');
+
+    currentFilter = e.target.getAttribute('data-filter');
+
+    renderTasks();
   });
 });
